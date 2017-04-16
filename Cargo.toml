@@ -1,0 +1,10 @@
+[package]
+name = "analytics"
+version = "0.1.0"
+authors = ["Geordon Worley <vadixidav@gmail.com>"]
+
+[dependencies]
+rocket = "0.2"
+rocket_codegen = "0.2"
+rocket_contrib = "0.2"
+analytics-proto = {git = "https://github.com/ldev-r3-t4/analytics-proto", rev = "c63c76d51e31f323772bb08c29056b3698fcc5b4"}
