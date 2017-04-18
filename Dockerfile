@@ -4,7 +4,7 @@ RUN apt-get -qq update -y && \
   apt-get -qq install -y --no-install-recommends curl ca-certificates \
   file sudo gcc libc-dev
 RUN curl -s https://static.rust-lang.org/rustup.sh | sh -s -- \
-  --channel=nightly --prefix=/usr
+  --channel=nightly --date=2017-04-13 --prefix=/usr
 WORKDIR /build
 COPY Cargo.toml Cargo.lock /build/
 COPY src /build/src
