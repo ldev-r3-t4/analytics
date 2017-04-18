@@ -1,0 +1,463 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Analytics",
+		"_postman_id": "ae27ce33-b2dd-3441-43c9-ebaabe65eeb6",
+		"description": "Testing for the analytics server for mECEge.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AllChannels",
+			"description": "",
+			"item": [
+				{
+					"name": "Good",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 200;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"2017-04-11T04:29:16.064185621Z\",\"serviced_time\":\"2017-04-11T04:29:16.064188591Z\",\"message\":{\"AllChannels\":{\"total_channels\":5,\"success\":true}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Bad JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 400;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"2017-04-11T04:29:16.064185621Z\",\"serviced_time\":\"2017-04-11T04:29:16.064188591Z\",\"message\":{\"AllChannels\":{\"total_channels\":5,\"succ\":true}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CreateChannel",
+			"description": "",
+			"item": [
+				{
+					"name": "Good",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 200;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"2017-04-11T04:29:16.064613838Z\",\"serviced_time\":\"2017-04-11T04:29:16.064614475Z\",\"message\":{\"CreateChannel\":{\"channel_name_length\":7,\"success\":true}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Bad JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 400;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"2017-04-11T04:29:16.064613838Z\",\"serviced_time\":\"2017-04-11T04:29:16.064614475Z\",\"message\":{\"CreateChannel\":{\"channelnamelength\":7,\"success\":true}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"description": "",
+			"item": [
+				{
+					"name": "Invalid Content Type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 404;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"2017-04-11T04:29:16.064185621Z\",\"serviced_time\":\"2017-04-11T04:29:16.064188591Z\",\"message\":{\"AllChannels\":{\"total_channels\":5,\"success\":true}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Improperly Formatted received_time",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 400;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"11T04:29:16.064185621Z\",\"serviced_time\":\"2017-04-11T04:29:16.064188591Z\",\"message\":{\"AllChannels\":{\"total_channels\":5,\"success\":true}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Improperly Formatted serviced_time",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 400;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"2017-04-11T04:29:16.064185621Z\",\"serviced_time\":\"2017-04-11T04:29:16.blah\",\"message\":{\"AllChannels\":{\"total_channels\":5,\"success\":true}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MoreMessages",
+			"description": "",
+			"item": [
+				{
+					"name": "Good",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 200;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"2017-04-11T04:29:16.064422755Z\",\"serviced_time\":\"2017-04-11T04:29:16.064423786Z\",\"message\":{\"MoreMessages\":{\"num_requested\":5,\"num_sent\":0,\"success\":false}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Bad JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 400;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"2017-04-11T04:29:16.064422755Z\",\"serviced_time\":\"2017-04-11T04:29:16.064423786Z\",\"message\":{\"MoreMessages\":{\"num_requested\":5,\"num_sent\":0,\"success\":\"blah\"}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MostRecentMessages",
+			"description": "",
+			"item": [
+				{
+					"name": "Good",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 200;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"2017-04-11T04:29:16.064324152Z\",\"serviced_time\":\"2017-04-11T04:29:16.064324934Z\",\"message\":{\"MostRecentMessages\":{\"num_messages\":8,\"success\":true}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Bad JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 400;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"2017-04-11T04:29:16.064324152Z\",\"serviced_time\":\"2017-04-11T04:29:16.064324934Z\",\"message\":{\"MostRecentMessages\":{\"num_messages\":-2,\"success\":true}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SendMessage",
+			"description": "",
+			"item": [
+				{
+					"name": "Good",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 200;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"2017-04-11T04:29:16.064537018Z\",\"serviced_time\":\"2017-04-11T04:29:16.064537698Z\",\"message\":{\"SendMessage\":{\"message_length\":87,\"success\":true}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Bad JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"expected = 400;",
+									"tests[\"Status code is \" + expected] = responseCode.code === expected;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://analytics:80/v1/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"received_time\":\"2017-04-11T04:29:16.064537018Z\",\"serviced_time\":\"2017-04-11T04:29:16.064537698Z\",\"message\":{\"SendMessage\":{\"message_length\":87,\"success\":maybe}}}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

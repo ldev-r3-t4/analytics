@@ -1,0 +1,8 @@
+analytics-test:
+  build: .
+  dockerfile: Dockerfile.test
+  links:
+    - analytics
+analytics:
+  build: .
+  dockerfile: Dockerfile

@@ -1,0 +1,4 @@
+FROM postman/newman_ubuntu1404
+WORKDIR /test
+COPY analytics_postman.json /test/
+ENTRYPOINT newman run /test/analytics_postman.json
