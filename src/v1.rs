@@ -8,9 +8,7 @@ use rocket_contrib::JSON;
 use proto::*;
 
 pub fn routes() -> Vec<Route> {
-    routes![
-        record_event
-    ]
+    routes![record_event]
 }
 
 /// Route: `/`
@@ -23,3 +21,4 @@ pub fn routes() -> Vec<Route> {
 pub fn record_event(event: JSON<Event>) -> Custom<()> {
     Custom(Status::Ok, ())
 }
+
