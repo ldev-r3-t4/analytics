@@ -16,6 +16,7 @@
 extern crate rocket;
 extern crate rocket_contrib;
 extern crate analytics_proto as proto;
+extern crate reqwest as rq;
 
 pub mod v1;
 
