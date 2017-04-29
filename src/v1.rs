@@ -8,8 +8,10 @@ use rocket_contrib::JSON;
 use proto::*;
 use std::sync::Mutex;
 
+#[doc(hidden)]
 pub type Data = Mutex<Analytics>;
 
+#[doc(hidden)]
 #[derive(Default, Debug, Clone)]
 pub struct Analytics {
     events: Vec<Event>,
@@ -21,6 +23,7 @@ impl Analytics {
     }
 }
 
+#[doc(hidden)]
 pub fn routes() -> Vec<Route> {
     routes![record_event]
 }
