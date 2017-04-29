@@ -1,5 +1,6 @@
 #![feature(plugin)]
 #![plugin(rocket_codegen)]
+#![allow(unmounted_route)]
 extern crate rocket;
 extern crate rocket_contrib;
 extern crate analytics_proto as proto;
