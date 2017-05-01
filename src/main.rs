@@ -9,7 +9,6 @@
 //!
 //! Choose one of the version modules which corresponds to a mount point below to see more about it.
 
-
 #![feature(plugin)]
 #![plugin(rocket_codegen)]
 #![allow(unmounted_route)]
