@@ -18,6 +18,7 @@ extern crate analytics_proto as proto;
 extern crate reqwest as rq;
 
 pub mod v1;
+pub mod v2;
 
 use rocket::Rocket;
 use rocket::response::content::HTML;
