@@ -27,8 +27,9 @@ fn countdown() -> Rocket {
     rocket::ignite()
         .mount("/", routes![index])
         .mount("/v1", v1::routes())
-        .mount("/v2", v2::routes())
         .manage(v1::Data::default())
+        .mount("/v2", v2::routes())
+        .manage(v2::Data::default())
 }
 
 fn main() {
