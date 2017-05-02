@@ -3,7 +3,7 @@
 //! This module contains the handlers for the mount point `/v1/`.
 use rocket::{Route, State};
 use rocket_contrib::JSON;
-use proto::proto1::*;
+use proto::proto2::*;
 use std::sync::Mutex;
 
 #[doc(hidden)]
