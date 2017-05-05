@@ -16,6 +16,9 @@ extern crate rocket;
 extern crate rocket_contrib;
 extern crate analytics_proto as proto;
 extern crate reqwest as rq;
+extern crate serde;
+#[macro_use]
+extern crate serde_derive;
 
 pub mod v1;
 pub mod v2;
@@ -29,7 +32,7 @@ fn countdown() -> Rocket {
         .mount("/v1", v1::routes())
         .manage(v1::Data::default())
         .mount("/v2", v2::routes())
-        .manage(v2::Data::default())
+        .manage(v2::new_data())
 }
 
 fn main() {

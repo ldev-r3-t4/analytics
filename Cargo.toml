@@ -8,4 +8,7 @@ rocket = "0.2"
 rocket_codegen = "0.2"
 rocket_contrib = "0.2"
 reqwest = "0.5"
+serde = "0.9"
+serde_json = "0.9"
+serde_derive = "0.9"
 analytics-proto = {git = "https://github.com/ldev-r3-t4/analytics-proto", rev = "8183794e96c09defc36fea6c5865fa06916a2c85"}
